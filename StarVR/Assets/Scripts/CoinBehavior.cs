@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour {
+public class CoinBehavior : MonoBehaviour {
 
+    public int points;
+    
     GameController gamecontroller;
 
-	Rigidbody enemyRigidBody;
-	float speed = 5f;
+    Rigidbody enemyRigidBody;
+    float speed = 5f;
 
-	AudioSource source;
+    AudioSource source;
 
     void Awake()
     {
@@ -18,21 +20,20 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void Start()
     {
-        enemyRigidBody.angularVelocity = Random.insideUnitSphere * speed;
         enemyRigidBody.velocity = transform.forward * speed;
     }
 
-     void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             source.Play();
 
             //Set to game over
-           // gamecontroller.GameOver();
-            Destroy(gameObject,0.5f);
+            // gamecontroller.AddScore(points);
+            Destroy(gameObject, 0.5f);
             Destroy(other.gameObject);
         }
     }
-
 }
+
