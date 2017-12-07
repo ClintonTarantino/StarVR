@@ -13,7 +13,7 @@ public class CoinBehavior : MonoBehaviour {
 
     void Awake()
     {
-        gamecontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<GameController>();
+        gamecontroller = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         enemyRigidBody = GetComponent<Rigidbody>();
         source = GetComponent<AudioSource>();
     }
@@ -30,10 +30,9 @@ public class CoinBehavior : MonoBehaviour {
             source.Play();
 
             //Set to game over
-            // gamecontroller.AddScore(points);
+            gamecontroller.AddScore(points);
             Destroy(gameObject, 0.5f);
-            Destroy(other.gameObject);
-        }
+            }
     }
 }
 
